@@ -2,6 +2,11 @@ require('dotenv').config({path: './config.env'});
 const mongoose = require('mongoose');
 const app = require('./app');
 
+process.on('uncaughtException', reason => {
+    console.error(reason.name, reason.message);
+    process.exit(1);
+});
+
 
 mongoose.connect(process.env.DATABASE, {
     useUnifiedTopology: true,
@@ -21,9 +26,9 @@ process.on('unhandledRejection', reason => {
         process.exit(1);
     });
 });
-process.on('uncaughtException', reason => {
-    console.error(reason.name, reason.message);
+process.on('SIGTERM', () => {
+    console.log('SIGTERM received. Shutting down gracefully!');
     server.close(() => {
-        process.exit(1);
+        console.log('Process terminated!');
     });
 });
