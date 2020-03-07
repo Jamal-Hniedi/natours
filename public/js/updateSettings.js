@@ -4,9 +4,8 @@ import axios from 'axios';
 export const updateSettings = async (type, data) => {
     try {
         const url = type === 'data' ?
-            'http://localhost:8080/api/v1/users/update' :
-            'http://localhost:8080/api/v1/users/updatePassword';
-        console.log(data);
+            '/api/v1/users/update' :
+            '/api/v1/users/updatePassword';
         const res = await axios({
             method: 'PATCH',
             url,

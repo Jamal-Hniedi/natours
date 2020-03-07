@@ -12,10 +12,7 @@ mongoose.connect(process.env.DATABASE_LOCAL, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
-})
-    .then(() => {
-        console.log("DB connected successfully!");
-    });
+});
 
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/tours.json`, 'utf-8'));
 const users = JSON.parse(fs.readFileSync(`${__dirname}/users.json`, 'utf-8'));
@@ -28,7 +25,7 @@ const importData = async () => {
         await Review.create(reviews);
         console.log('Data imported');
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
     process.exit();
 };
@@ -40,11 +37,10 @@ const deleteData = async () => {
         await Review.deleteMany();
         console.log('Data deleted');
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
     process.exit();
 };
 
 if (process.argv[2] === '--import') importData();
 else if (process.argv[2] === '--delete') deleteData();
-console.log(process.argv);

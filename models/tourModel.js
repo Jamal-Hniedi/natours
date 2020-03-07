@@ -153,7 +153,6 @@ tourSchema.pre('save', function (next) {
 // Query middleware:
 tourSchema.pre(/^find/, function (next) {
     this.find({secret: {$ne: true}});
-    this.start = Date.now();
     next();
 });
 
@@ -174,9 +173,5 @@ tourSchema.pre('aggregate', function (next) {
 });
 */
 
-tourSchema.post(/^find/, function (docs, next) {
-    console.log(`Query took ${Date.now() - this.start} ms!`);
-    next();
-});
 const Tour = mongoose.model('Tour', tourSchema);
 module.exports = Tour;

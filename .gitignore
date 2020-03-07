@@ -1,4 +1,5 @@
 # Default ignored files
+.cache
 .idea
-/node_modules
+node_modules
 *.env

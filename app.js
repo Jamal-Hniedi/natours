@@ -9,6 +9,7 @@ const AppError = require('./utils/AppError');
 const globalErrorHandler = require('./controllers/errorController');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -59,6 +60,8 @@ app.use(hpp({
         'difficulty', 'price'
     ]
 }));
+
+app.use(compression());
 
 app.use(`/`, viewRouter);
 app.use(`${URL}/tours`, tourRouter);

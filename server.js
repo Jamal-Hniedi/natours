@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const app = require('./app');
 
 process.on('uncaughtException', reason => {
-    console.log(reason.name, reason.message);
+    console.error(reason.name, reason.message);
     process.exit(1);
 });
 
@@ -20,7 +20,7 @@ mongoose.connect(process.env.DATABASE_LOCAL, {
 const server = app.listen(process.env.PORT);
 
 process.on('unhandledRejection', reason => {
-    console.log(reason);
+    console.error(reason);
     server.close(() => {
         process.exit(1);
     })
