@@ -2,12 +2,8 @@ require('dotenv').config({path: './config.env'});
 const mongoose = require('mongoose');
 const app = require('./app');
 
-process.on('uncaughtException', reason => {
-    console.error(reason.name, reason.message);
-    process.exit(1);
-});
 
-mongoose.connect(process.env.DATABASE_LOCAL, {
+mongoose.connect(process.env.DATABASE, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -23,5 +19,11 @@ process.on('unhandledRejection', reason => {
     console.error(reason);
     server.close(() => {
         process.exit(1);
-    })
+    });
+});
+process.on('uncaughtException', reason => {
+    console.error(reason.name, reason.message);
+    server.close(() => {
+        process.exit(1);
+    });
 });
