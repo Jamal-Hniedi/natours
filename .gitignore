@@ -2,4 +2,4 @@
 .cache
 .idea
 node_modules
-*.envpakc
+*.env
