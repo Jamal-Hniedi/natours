@@ -1,4 +1,3 @@
 # Natours application
 Built using advanced technologies:
-  Node.js, express.
-  MongoDB, mongoose.
+  Node.js, express, MongoDB, mongoose.
