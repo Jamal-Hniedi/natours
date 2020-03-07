@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon server.js -q",
-    "start:prod": "SET NODE_ENV=production& nodemon server.js -q",
+    "start": "SET NODE_ENV=production& node server.js",
+    "start:dev": "node server.js ",
     "debug": "ndb server.js",
     "debug:prod": "SET NODE_ENV=production& ndb server.js",
     "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
@@ -38,5 +38,8 @@
     "stripe": "^8.29.0",
     "validator": "^12.2.0",
     "xss-clean": "^0.1.1"
+  },
+  "engines": {
+    "node": ">=12.16.1"
   }
 }
