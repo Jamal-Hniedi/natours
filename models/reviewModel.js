@@ -29,7 +29,6 @@ const schema = new mongoose.Schema({
     {
         toJSON: {virtuals: true},
         toObject: {virtuals: true}
-
     });
 
 schema.pre(/^find/, function (next) {

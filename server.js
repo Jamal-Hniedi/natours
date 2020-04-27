@@ -7,13 +7,13 @@ process.on('uncaughtException', reason => {
     process.exit(1);
 });
 
-
-mongoose.connect(process.env.DATABASE, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-})
+mongoose.connect(process.env.DATABASE_LOCAL,
+    {
+        useUnifiedTopology: true,
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useFindAndModify: false
+    })
     .then(() => {
         console.log("DB connected successfully!");
     });
@@ -26,6 +26,7 @@ process.on('unhandledRejection', reason => {
         process.exit(1);
     });
 });
+
 process.on('SIGTERM', () => {
     console.log('SIGTERM received. Shutting down gracefully!');
     server.close(() => {

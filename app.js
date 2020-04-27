@@ -11,6 +11,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
 const cors = require('cors');
+const axios = require('axios');
 
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -81,6 +82,14 @@ app.use(`${URL}/tours`, tourRouter);
 app.use(`${URL}/users`, userRouter);
 app.use(`${URL}/reviews`, reviewRouter);
 app.use(`${URL}/bookings`, bookingRouter);
+app.use(`keep-me-alive`, (req, res) => {
+    res.status(200).json();
+});
+
+setInterval(async () => {
+    await axios.get('https://cureme69.herokuapp.com/keep-me-alive');
+    console.log('natours is alive!')
+}, 14 * 60 * 1000)
 
 app.all('*', (req, res, next) => {
     next(new AppError(`Cannot find ${req.originalUrl} on this server!`, 404));
