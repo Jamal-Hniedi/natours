@@ -7,7 +7,7 @@ process.on('uncaughtException', reason => {
     process.exit(1);
 });
 
-mongoose.connect(process.env.DATABASE_LOCAL,
+mongoose.connect(process.env.DATABASE,
     {
         useUnifiedTopology: true,
         useNewUrlParser: true,
