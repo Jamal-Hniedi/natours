@@ -25,7 +25,7 @@ const URL = '/api/v1';
 
 const app = express();
 // For heroku to work
-app.enable('trustssssssssproxy');
+app.enable('trust proxy');
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
